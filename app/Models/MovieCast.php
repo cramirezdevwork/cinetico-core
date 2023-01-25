@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Gender extends Model
+class MovieCast extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'gender_id';
-    protected $table = 'genders';
 
+    protected $table = 'movie_cast';
+    protected $primaryKey = 'movie_cast_id';
     public $timestamps = false;
+
 }
