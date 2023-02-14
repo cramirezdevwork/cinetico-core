@@ -32,5 +32,8 @@ class GenderSeeder extends Seeder
         Gender::firstOrCreate([
             'name' => 'Non-Fiction',
         ]);
+        Gender::firstOrCreate([
+            'name' => 'Horror',
+        ]);
     }
 }

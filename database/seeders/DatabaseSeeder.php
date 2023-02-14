@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
         $seeders =
             array(GenderSeeder::class,
             ClassificationSeeder::class,
-            CastTypeSeeder::class);
+            CastTypeSeeder::class,
+            MovieSeeder::class);
 
         $this->call($seeders);
     }
