@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Movie extends Model
 {
@@ -26,10 +27,15 @@ class Movie extends Model
 
     public function get_movie_by_id($id)
     {
-        $movie = Movie::find($id);
+       $movie = Movie::Select('movies.*', DB::raw('GROUP_CONCAT(casts.name) AS cast_name'))
+            ->leftjoin('movie_casts', 'movie_casts.movie_id', '=', 'movies.movie_id')
+            ->leftjoin('casts', 'casts.cast_id','=', 'movie_casts.cast_id')
+            ->where('movies.movie_id', '=', $id)
+            ->groupBy('movies.movie_id')
+            ->get();
 
-        if (isset($movie)){
-            return $movie;
+        if (isset($movie[0])){
+            return $movie[0];
         }else{
             return [
                 "code" => '01',
